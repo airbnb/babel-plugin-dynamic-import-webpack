@@ -1,0 +1,47 @@
+{
+  "name": "babel-plugin-dynamic-import-webpack",
+  "version": "1.0.0",
+  "description": "Babel plugin to transpile import() to require.ensure, for Webpack",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "test": "npm run lint && npm run tests-only",
+    "tests-only": "mocha --require babel-register",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/babel-plugin-dynamic-import-webpack.git"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "dynamic",
+    "import",
+    "webpack"
+  ],
+  "author": "Jordan Gensler <jordan.gensler@airbnb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/babel-plugin-dynamic-import-webpack/issues"
+  },
+  "homepage": "https://github.com/airbnb/babel-plugin-dynamic-import-webpack#readme",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-preset-airbnb": "^2.1.1",
+    "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
+    "eslint": "^3.8.0",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "mocha": "^3.1.2"
+  },
+  "dependencies": {
+    "babel-template": "^6.16.0"
+  }
+}
