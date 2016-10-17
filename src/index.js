@@ -21,7 +21,6 @@ export default () => ({
         const newImport = buildImport({
           SOURCE: path.node.arguments,
         });
-        // console.log(newImport);
         path.replaceWith(newImport);
       }
     },
