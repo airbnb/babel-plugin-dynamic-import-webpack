@@ -2,13 +2,7 @@ import template from 'babel-template';
 
 const TYPE_IMPORT = 'Import';
 
-const buildImport = template(`
-  (new Promise((resolve) => {
-    require.ensure([], (require) => {
-      resolve(require(SOURCE));
-    });
-  }))
-`);
+const buildImport = template('(new Promise((resolve) => { require.ensure([], (require) => { resolve(require(SOURCE)); }); }))');
 
 export default () => ({
   manipulateOptions(opts, parserOpts) {
