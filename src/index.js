@@ -1,4 +1,5 @@
 import template from 'babel-template';
+import syntax from 'babel-plugin-syntax-dynamic-import';
 
 const TYPE_IMPORT = 'Import';
 
@@ -11,6 +12,8 @@ const buildImport = template(`
 `);
 
 export default () => ({
+  inherits: syntax,
+
   visitor: {
     CallExpression(path) {
       if (path.node.callee.type === TYPE_IMPORT) {
