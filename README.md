@@ -7,13 +7,13 @@ Babel plugin to transpile `import()` to `require.ensure`, for Webpack.
 ## Installation
 
 ```sh
-$ npm install babel-plugin-dynamic-import-webpack
+$ npm install babel-plugin-dynamic-import-webpack --save-dev
 ```
 
 You'll also need to enable babylon to parse the dynamic import syntax by installing `babel-plugin-syntax-dynamic-import` plugin.
 
 ```sh
-$ npm install babel-plugin-syntax-dynamic-import
+$ npm install babel-plugin-syntax-dynamic-import --save-dev
 ```
 
 ## Usage
