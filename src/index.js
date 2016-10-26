@@ -11,10 +11,6 @@ const buildImport = template(`
 `);
 
 export default () => ({
-  manipulateOptions(opts, parserOpts) {
-    parserOpts.plugins.push('dynamicImport');
-  },
-
   visitor: {
     CallExpression(path) {
       if (path.node.callee.type === TYPE_IMPORT) {
