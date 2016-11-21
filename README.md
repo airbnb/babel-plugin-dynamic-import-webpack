@@ -10,6 +10,33 @@ Babel plugin to transpile `import()` to `require.ensure`, for Webpack.
 $ npm install babel-plugin-dynamic-import-webpack --save-dev
 ```
 
+## Example
+
+### Dynamic Arguments
+In
+```javascript
+const MODULE = 'test-module';
+
+import(MODULE);
+import(`test-${MODULE}`);
+```
+
+Out
+```javascript
+const MODULE = 'test-module';
+new Promise(resolve => {
+  require.ensure([], require => {
+    resolve(require(MODULE));
+  });
+});
+new Promise(resolve => {
+  require.ensure([], require => {
+    resolve(require(`test-${ MODULE }`));
+  });
+});
+```
+View more in [Test Fixtures](/test/fixtures)
+
 ## Usage
 
 ### Via `.babelrc` (Recommended)
