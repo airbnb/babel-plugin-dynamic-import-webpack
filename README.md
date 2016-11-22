@@ -12,28 +12,27 @@ $ npm install babel-plugin-dynamic-import-webpack --save-dev
 
 ## Example
 
-### Dynamic Arguments
+### Nested Import
 In
 ```javascript
-const MODULE = 'test-module';
+function getModule(testModule) {
+  return import(`src/${testModule}`);
+}
 
-import(MODULE);
-import(`test-${MODULE}`);
+getModule('moduleA').then(moduleObj => moduleObj);
 ```
 
 Out
 ```javascript
-const MODULE = 'test-module';
-new Promise(resolve => {
-  require.ensure([], require => {
-    resolve(require(MODULE));
+function getModule(testModule) {
+  return new Promise(resolve => {
+    require.ensure([], require => {
+      resolve(require(`src/${ testModule }`));
+    });
   });
-});
-new Promise(resolve => {
-  require.ensure([], require => {
-    resolve(require(`test-${ MODULE }`));
-  });
-});
+}
+
+getModule('moduleA').then(moduleObj => moduleObj);
 ```
 View more in [Test Fixtures](/test/fixtures)
 
