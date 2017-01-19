@@ -2,7 +2,7 @@
 
 Babel plugin to transpile `import()` to `require.ensure`, for Webpack.
 
-**NOTE:** Babylon v6.12.0 is required to correct parse dynamic imports.
+**NOTE:** Babylon v6.12.0 is required to correctly parse dynamic imports.
 
 ## Installation
 
