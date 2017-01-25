@@ -7,6 +7,6 @@ new Promise(resolve => {
 });
 new Promise(resolve => {
   require.ensure([], require => {
-    resolve(require(`test-${ MODULE }`));
+    resolve(require(`test-${MODULE}`));
   });
 });
