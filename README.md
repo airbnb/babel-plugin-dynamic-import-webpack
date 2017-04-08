@@ -12,6 +12,32 @@ Note that Webpack 2 has [gotten `import()`](https://github.com/webpack/webpack/i
 $ npm install babel-plugin-dynamic-import-webpack --save-dev
 ```
 
+## Example
+
+### Nested Import
+In
+```javascript
+function getModule(testModule) {
+  return import(`src/${testModule}`);
+}
+
+getModule('moduleA').then(moduleObj => moduleObj);
+```
+
+Out
+```javascript
+function getModule(testModule) {
+  return new Promise(resolve => {
+    require.ensure([], require => {
+      resolve(require(`src/${ testModule }`));
+    });
+  });
+}
+
+getModule('moduleA').then(moduleObj => moduleObj);
+```
+View more in [Test Fixtures](/test/fixtures)
+
 ## Usage
 
 ### Via `.babelrc` (Recommended)
