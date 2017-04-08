@@ -1,6 +1,6 @@
 # babel-plugin-dynamic-import-webpack
 
-Babel plugin to transpile `import()` to `require.ensure`, for Webpack.
+Babel plugin to transpile `import()` to `require.ensure`, for Webpack. It also supports transpiling into plain `require` for e.g. Jest.
 
 Note that Webpack 2 has [gotten `import()`](https://github.com/webpack/webpack/issues/3098) after this code was written.
 
@@ -21,6 +21,14 @@ $ npm install babel-plugin-dynamic-import-webpack --save-dev
 ```json
 {
   "plugins": ["dynamic-import-webpack"]
+}
+// With options:
+{
+  "plugins": [
+    ["dynamic-import-webpack", {
+      "plainRequire": true
+    }]
+  ]
 }
 ```
 

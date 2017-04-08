@@ -11,13 +11,20 @@ const buildImport = template(`
   }))
 `);
 
+const buildPlainImport = template(`
+  (new Promise((resolve) => {
+    resolve(require(SOURCE));
+  }))
+`);
+
 export default () => ({
   inherits: syntax,
 
   visitor: {
-    CallExpression(path) {
+    CallExpression(path, state) {
       if (path.node.callee.type === TYPE_IMPORT) {
-        const newImport = buildImport({
+        const importBuilder = state.opts.plainRequire ? buildPlainImport : buildImport;
+        const newImport = importBuilder({
           SOURCE: path.node.arguments,
         });
         path.replaceWith(newImport);
