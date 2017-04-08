@@ -24,6 +24,17 @@ $ npm install babel-plugin-dynamic-import-webpack --save-dev
 }
 ```
 
+You can also use `parseOpts` and not install the syntax-plugin:
+
+```json
+{
+  "parserOpts": {
+    "plugins": ["dynamicImport"]
+  },
+  "plugins": ["dynamic-import-webpack"]
+}
+```
+
 ### Via CLI
 
 ```sh
