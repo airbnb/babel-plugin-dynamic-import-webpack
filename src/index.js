@@ -3,13 +3,15 @@ import syntax from 'babel-plugin-syntax-dynamic-import';
 
 const TYPE_IMPORT = 'Import';
 
-const buildImport = template(`
+const buildImport = opts => template(`
   (new Promise((resolve) => {
     require.ensure([], (require) => {
       requireLogic
-    });
+    }${opts.webpackChunkName ? ', webpackChunkName' : ''});
   }))
-`);
+`)(opts);
+
+const chunkNamePattern = /webpackChunkName: "(.+)"/;
 
 export default ({ types }) => ({
   inherits: syntax,
@@ -18,6 +20,15 @@ export default ({ types }) => ({
     CallExpression(path) {
       if (path.node.callee.type === TYPE_IMPORT) {
         const importPath = path.node.arguments[0];
+
+        let webpackChunkName;
+        importPath.leadingComments = (importPath.leadingComments || []).filter((comment) => {
+          const matches = chunkNamePattern.exec(comment.value);
+          // Create a StringLiteral node for use in the babel-template.
+          webpackChunkName = matches ? types.StringLiteral(matches[1]) : undefined;
+          return !matches;
+        });
+
         /**
          * Create the resolve(require('path')) call.
          * This utilizes babel-helpers to properly handle default and named exports.
@@ -39,6 +50,7 @@ export default ({ types }) => ({
 
         const newImport = buildImport({
           requireLogic,
+          webpackChunkName,
         });
         path.replaceWith(newImport);
       }
