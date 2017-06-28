@@ -1,7 +1,7 @@
 function getModule(path) {
   return new Promise(resolve => {
     require.ensure([], require => {
-      resolve(require('test-module'));
+      resolve(babelHelpers.interopRequireWildcard(require('test-module')));
     });
   });
 }
