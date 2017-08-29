@@ -7,9 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
-    "test": "npm run lint && npm run tests-only",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir lib",
+    "pretest": "npm run lint",
+    "test": "npm run tests-only",
     "tests-only": "mocha --require babel-register",
     "lint": "eslint .",
     "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
