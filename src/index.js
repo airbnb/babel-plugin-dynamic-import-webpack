@@ -1,8 +1,6 @@
 import template from 'babel-template';
 import syntax from 'babel-plugin-syntax-dynamic-import';
 
-const TYPE_IMPORT = 'Import';
-
 const buildImport = template(`
   (new Promise((resolve) => {
     require.ensure([], (require) => {
@@ -15,13 +13,11 @@ export default () => ({
   inherits: syntax,
 
   visitor: {
-    CallExpression(path) {
-      if (path.node.callee.type === TYPE_IMPORT) {
-        const newImport = buildImport({
-          SOURCE: path.node.arguments,
-        });
-        path.replaceWith(newImport);
-      }
+    Import(path) {
+      const newImport = buildImport({
+        SOURCE: path.parentPath.node.arguments,
+      });
+      path.parentPath.replaceWith(newImport);
     },
   },
 });
