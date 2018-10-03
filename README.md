@@ -33,7 +33,7 @@ $ babel --plugins dynamic-import-webpack script.js
 ### Via Node API
 
 ```javascript
-require("babel-core").transform("code", {
+require("@babel/core").transform("code", {
   plugins: ["dynamic-import-webpack"]
 });
 ```

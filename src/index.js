@@ -1,4 +1,9 @@
-export default ({ template }) => {
+import { declare } from '@babel/helper-plugin-utils';
+import syntax from '@babel/plugin-syntax-dynamic-import';
+
+export default declare(({ assertVersion, template }) => {
+  assertVersion(7);
+
   const buildImport = template(`
   (new Promise((resolve) => {
     require.ensure([], (require) => {
@@ -8,12 +13,7 @@ export default ({ template }) => {
 `);
 
   return {
-    // NOTE: Once we drop support for Babel <= v6 we should
-    // update this to import from @babel/plugin-syntax-dynamic-import.
-    // https://www.npmjs.com/package/@babel/plugin-syntax-dynamic-import
-    manipulateOptions(opts, parserOpts) {
-      parserOpts.plugins.push('dynamicImport');
-    },
+    inherits: syntax,
     visitor: {
       Import(path) {
         const newImport = buildImport({
@@ -23,4 +23,4 @@ export default ({ template }) => {
       },
     },
   };
-};
+});

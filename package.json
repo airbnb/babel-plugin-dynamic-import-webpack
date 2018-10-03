@@ -12,7 +12,7 @@
     "build": "babel src --out-dir lib",
     "pretest": "npm run lint",
     "test": "npm run tests-only",
-    "tests-only": "tape --require babel-register test",
+    "tests-only": "tape --require @babel/register test",
     "lint": "eslint .",
     "prepublish": "in-publish && safe-publish-latest && npm run build || not-in-publish",
     "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
@@ -42,17 +42,24 @@
   },
   "homepage": "https://github.com/airbnb/babel-plugin-dynamic-import-webpack#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-preset-airbnb": "^2.4.0",
-    "babel-register": "^6.26.0",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^8.2.6",
+    "babel-preset-airbnb": "^3.0.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.12.0",
     "in-publish": "^2.0.0",
     "rimraf": "^2.6.2",
     "safe-publish-latest": "^1.1.1",
-    "tape": "^4.9.0"
+    "tape": "^4.9.1"
+  },
+  "dependencies": {
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0"
   }
 }
