@@ -1,3 +1,7 @@
+## v1.0.3
+
+- [patch] Removes dependency on babel-template and babel-plugin-syntax-dynamic-import ([#51](https://github.com/airbnb/babel-plugin-dynamic-import-webpack/pull/51))
+
 ## v1.0.2
 
 - [refactor] Visit Import nodes instead of CallExpressions ([#33](https://github.com/airbnb/babel-plugin-dynamic-import-webpack/pull/33))

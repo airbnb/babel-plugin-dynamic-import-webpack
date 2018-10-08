@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-dynamic-import-webpack",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Babel plugin to transpile import() to require.ensure, for Webpack",
   "main": "lib/index.js",
   "directories": {
