@@ -40,4 +40,4 @@ require("babel-core").transform("code", {
 
 ### Dynamic imports and webpack
 
-Although the specification for `import()` supports a dynamic importing of modules in the browser runtime, webpack's `require.ensure()` is not dynamic and requires a hardcoded string to work correctly. For more information see [webpack's documentation](https://webpack.github.io/docs/context.html#dynamic-requires) on dynamic requires. 
+Although the specification for `import()` supports a dynamic importing of modules in the browser runtime, webpack's `require.ensure()` is not dynamic and requires a hardcoded string to work correctly. For more information see [webpack's documentation](https://webpack.js.org/guides/code-splitting/#dynamic-imports) on dynamic imports. 
